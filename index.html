@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zenvio — Automatización IA para negocios locales</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-dark: #1A4D3A;
+      --green-mid: #4CAF82;
+      --green-light: #E8F5EE;
+      --off-white: #F5F2EC;
+      --text-dark: #1A1A1A;
+      --text-muted: #6B7280;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--off-white);
+      color: var(--text-dark);
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      background: var(--green-dark);
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--off-white);
+      letter-spacing: -0.5px;
+    }
+
+    .logo span { color: var(--green-mid); }
+
+    nav a {
+      color: rgba(245,242,236,0.7);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--off-white); }
+
+    /* HERO */
+    .hero {
+      background: var(--green-dark);
+      padding: 80px 40px 100px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(76,175,130,0.2);
+      color: var(--green-mid);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 52px);
+      font-weight: 800;
+      color: var(--off-white);
+      line-height: 1.15;
+      max-width: 720px;
+      margin: 0 auto 20px;
+      letter-spacing: -1px;
+    }
+
+    .hero h1 span { color: var(--green-mid); }
+
+    .hero p {
+      font-size: clamp(15px, 2vw, 18px);
+      color: rgba(245,242,236,0.7);
+      max-width: 520px;
+      margin: 0 auto 36px;
+      line-height: 1.6;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green-mid);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .hero-cta:hover { opacity: 0.9; }
+
+    /* DEMO SECTION */
+    .demo-section {
+      padding: 80px 40px;
+      text-align: center;
+      background: var(--off-white);
+    }
+
+    .section-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--green-mid);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .demo-section h2 {
+      font-size: clamp(22px, 3vw, 36px);
+      font-weight: 800;
+      color: var(--green-dark);
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .demo-section > p {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-bottom: 48px;
+    }
+
+    .demo-cards {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .demo-card {
+      background: #fff;
+      border: 1.5px solid #E5E7EB;
+      border-radius: 16px;
+      padding: 28px;
+      flex: 1;
+      min-width: 260px;
+      max-width: 380px;
+      text-align: left;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      cursor: default;
+    }
+
+    .demo-card:hover {
+      border-color: var(--green-mid);
+      box-shadow: 0 4px 20px rgba(76,175,130,0.12);
+    }
+
+    .demo-card .icon {
+      font-size: 32px;
+      margin-bottom: 14px;
+    }
+
+    .demo-card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: 8px;
+    }
+
+    .demo-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .demo-hint {
+      margin-top: 40px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green-light);
+      color: var(--green-dark);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 12px 20px;
+      border-radius: 10px;
+    }
+
+    /* HOW IT WORKS */
+    .how-section {
+      background: var(--green-dark);
+      padding: 80px 40px;
+      text-align: center;
+    }
+
+    .how-section .section-label { color: var(--green-mid); }
+
+    .how-section h2 {
+      font-size: clamp(22px, 3vw, 36px);
+      font-weight: 800;
+      color: var(--off-white);
+      margin-bottom: 48px;
+      letter-spacing: -0.5px;
+    }
+
+    .steps {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .step {
+      flex: 1;
+      min-width: 200px;
+      max-width: 260px;
+      text-align: center;
+    }
+
+    .step-num {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(76,175,130,0.2);
+      color: var(--green-mid);
+      font-size: 16px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 14px;
+    }
+
+    .step h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--off-white);
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      font-size: 13px;
+      color: rgba(245,242,236,0.6);
+      line-height: 1.6;
+    }
+
+    /* CTA FINAL */
+    .cta-section {
+      padding: 80px 40px;
+      text-align: center;
+      background: var(--off-white);
+    }
+
+    .cta-section h2 {
+      font-size: clamp(22px, 3vw, 38px);
+      font-weight: 800;
+      color: var(--green-dark);
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .cta-section p {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green-dark);
+      color: var(--off-white);
+      font-size: 15px;
+      font-weight: 700;
+      padding: 15px 32px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .cta-btn:hover { opacity: 0.85; }
+
+    .no-fee {
+      margin-top: 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--green-dark);
+      padding: 24px 40px;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 13px;
+      color: rgba(245,242,236,0.5);
+    }
+
+    footer span { color: var(--green-mid); }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .hero { padding: 60px 20px 80px; }
+      .demo-section, .how-section, .cta-section { padding: 60px 20px; }
+      footer { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">Zen<span>vio</span></div>
+    <a href="#contacto">Contactar</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">Automatización IA para negocios locales</div>
+    <h1>Tu negocio responde solo,<br><span>incluso cuando no estás</span></h1>
+    <p>Instalamos un asistente con IA en tu web y WhatsApp que atiende clientes, responde preguntas y capta leads — las 24 horas, sin cuotas mensuales.</p>
+    <a href="#contacto" class="hero-cta">Quiero uno para mi negocio →</a>
+  </section>
+
+  <!-- DEMO -->
+  <section class="demo-section">
+    <div class="section-label">Demo en vivo</div>
+    <h2>Pruébalo ahora mismo</h2>
+    <p>Así verán tus clientes el asistente. Haz clic en el botón verde de la esquina inferior derecha.</p>
+
+    <div class="demo-cards">
+      <div class="demo-card">
+        <div class="icon">🦷</div>
+        <h3>Clínica Dental</h3>
+        <p>Responde consultas sobre precios, seguros y horarios. Capta pacientes nuevos automáticamente, incluso en fin de semana.</p>
+      </div>
+      <div class="demo-card">
+        <div class="icon">🍽️</div>
+        <h3>Restaurante</h3>
+        <p>Gestiona reservas y preguntas frecuentes sin atender el móvil. Ningún cliente se va sin respuesta.</p>
+      </div>
+    </div>
+
+    <div class="demo-hint">
+      💬 El asistente está activo — escríbele en la esquina inferior derecha
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-section">
+    <div class="section-label">Cómo funciona</div>
+    <h2>Lo instalamos, tú te despreocupas</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Nos cuentas tu negocio</h4>
+        <p>Rellenas un formulario con tu información. Sin reuniones largas.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>Lo configuramos todo</h4>
+        <p>Entrenamos el asistente con tus datos y lo conectamos a tu web y WhatsApp.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Empieza a funcionar</h4>
+        <p>Tu negocio atiende clientes solo. Tú recibes los leads directamente.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="contacto">
+    <h2>¿Quieres uno para tu negocio?</h2>
+    <p>Instalación única. Sin cuotas mensuales. Listo en menos de una semana.</p>
+    <a href="https://wa.me/34600000000?text=Hola%2C%20me%20interesa%20el%20asistente%20para%20mi%20negocio" class="cta-btn">
+      Contáctanos por WhatsApp →
+    </a>
+    <p class="no-fee">Sin compromiso. Te explicamos cómo funciona en 10 minutos.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 <span>Zenvio</span> — Automatización IA para negocios locales · A Coruña</p>
+  </footer>
+
+  <!-- BOTPRESS WIDGET -->
+  <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
+  <script src="https://files.bpcontent.cloud/2026/05/04/17/20260504173255-35QALUUP.js" defer></script>
+
+</body>
+</html>
