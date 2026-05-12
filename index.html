@@ -3,405 +3,271 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zenvio — Automatización IA para negocios locales</title>
+  <title>Zenvio — Tu negocio nunca duerme</title>
+  <meta name="description" content="Automatizamos la atención al cliente de tu negocio local con IA. Sin cuotas mensuales. Listo en menos de una semana." />
+  <link rel="icon" type="image/png" href="favicon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --green-dark: #1A4D3A;
-      --green-mid: #4CAF82;
-      --green-light: #E8F5EE;
-      --off-white: #F5F2EC;
-      --text-dark: #1A1A1A;
-      --text-muted: #6B7280;
-    }
-
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background: var(--off-white);
-      color: var(--text-dark);
-      min-height: 100vh;
-    }
-
-    /* NAV */
-    nav {
-      background: var(--green-dark);
-      padding: 18px 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo {
-      font-size: 22px;
-      font-weight: 800;
-      color: var(--off-white);
-      letter-spacing: -0.5px;
-    }
-
-    .logo span { color: var(--green-mid); }
-
-    nav a {
-      color: rgba(245,242,236,0.7);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
-    nav a:hover { color: var(--off-white); }
-
-    /* HERO */
-    .hero {
-      background: var(--green-dark);
-      padding: 80px 40px 100px;
-      text-align: center;
-    }
-
-    .hero-badge {
-      display: inline-block;
-      background: rgba(76,175,130,0.2);
-      color: var(--green-mid);
-      font-size: 12px;
-      font-weight: 600;
-      padding: 6px 14px;
-      border-radius: 20px;
-      margin-bottom: 24px;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-    }
-
-    .hero h1 {
-      font-size: clamp(28px, 5vw, 52px);
-      font-weight: 800;
-      color: var(--off-white);
-      line-height: 1.15;
-      max-width: 720px;
-      margin: 0 auto 20px;
-      letter-spacing: -1px;
-    }
-
-    .hero h1 span { color: var(--green-mid); }
-
-    .hero p {
-      font-size: clamp(15px, 2vw, 18px);
-      color: rgba(245,242,236,0.7);
-      max-width: 520px;
-      margin: 0 auto 36px;
-      line-height: 1.6;
-    }
-
-    .hero-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--green-mid);
-      color: #fff;
-      font-size: 15px;
-      font-weight: 700;
-      padding: 14px 28px;
-      border-radius: 10px;
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
-
-    .hero-cta:hover { opacity: 0.9; }
-
-    /* DEMO SECTION */
-    .demo-section {
-      padding: 80px 40px;
-      text-align: center;
-      background: var(--off-white);
-    }
-
-    .section-label {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--green-mid);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 12px;
-    }
-
-    .demo-section h2 {
-      font-size: clamp(22px, 3vw, 36px);
-      font-weight: 800;
-      color: var(--green-dark);
-      margin-bottom: 12px;
-      letter-spacing: -0.5px;
-    }
-
-    .demo-section > p {
-      font-size: 16px;
-      color: var(--text-muted);
-      margin-bottom: 48px;
-    }
-
-    .demo-cards {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .demo-card {
-      background: #fff;
-      border: 1.5px solid #E5E7EB;
-      border-radius: 16px;
-      padding: 28px;
-      flex: 1;
-      min-width: 260px;
-      max-width: 380px;
-      text-align: left;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      cursor: default;
-    }
-
-    .demo-card:hover {
-      border-color: var(--green-mid);
-      box-shadow: 0 4px 20px rgba(76,175,130,0.12);
-    }
-
-    .demo-card .icon {
-      font-size: 32px;
-      margin-bottom: 14px;
-    }
-
-    .demo-card h3 {
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--green-dark);
-      margin-bottom: 8px;
-    }
-
-    .demo-card p {
-      font-size: 14px;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    .demo-hint {
-      margin-top: 40px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--green-light);
-      color: var(--green-dark);
-      font-size: 14px;
-      font-weight: 600;
-      padding: 12px 20px;
-      border-radius: 10px;
-    }
-
-    /* HOW IT WORKS */
-    .how-section {
-      background: var(--green-dark);
-      padding: 80px 40px;
-      text-align: center;
-    }
-
-    .how-section .section-label { color: var(--green-mid); }
-
-    .how-section h2 {
-      font-size: clamp(22px, 3vw, 36px);
-      font-weight: 800;
-      color: var(--off-white);
-      margin-bottom: 48px;
-      letter-spacing: -0.5px;
-    }
-
-    .steps {
-      display: flex;
-      gap: 24px;
-      justify-content: center;
-      flex-wrap: wrap;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .step {
-      flex: 1;
-      min-width: 200px;
-      max-width: 260px;
-      text-align: center;
-    }
-
-    .step-num {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: rgba(76,175,130,0.2);
-      color: var(--green-mid);
-      font-size: 16px;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 14px;
-    }
-
-    .step h4 {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--off-white);
-      margin-bottom: 8px;
-    }
-
-    .step p {
-      font-size: 13px;
-      color: rgba(245,242,236,0.6);
-      line-height: 1.6;
-    }
-
-    /* CTA FINAL */
-    .cta-section {
-      padding: 80px 40px;
-      text-align: center;
-      background: var(--off-white);
-    }
-
-    .cta-section h2 {
-      font-size: clamp(22px, 3vw, 38px);
-      font-weight: 800;
-      color: var(--green-dark);
-      margin-bottom: 12px;
-      letter-spacing: -0.5px;
-    }
-
-    .cta-section p {
-      font-size: 16px;
-      color: var(--text-muted);
-      margin-bottom: 32px;
-    }
-
-    .cta-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--green-dark);
-      color: var(--off-white);
-      font-size: 15px;
-      font-weight: 700;
-      padding: 15px 32px;
-      border-radius: 10px;
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
-
-    .cta-btn:hover { opacity: 0.85; }
-
-    .no-fee {
-      margin-top: 16px;
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-
-    /* FOOTER */
-    footer {
-      background: var(--green-dark);
-      padding: 24px 40px;
-      text-align: center;
-    }
-
-    footer p {
-      font-size: 13px;
-      color: rgba(245,242,236,0.5);
-    }
-
-    footer span { color: var(--green-mid); }
-
-    @media (max-width: 600px) {
-      nav { padding: 16px 20px; }
-      .hero { padding: 60px 20px 80px; }
-      .demo-section, .how-section, .cta-section { padding: 60px 20px; }
-      footer { padding: 20px; }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
   <!-- NAV -->
-  <nav>
-    <div class="logo">Zen<span>vio</span></div>
-    <a href="#contacto">Contactar</a>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <div class="logo">Zen<span>vio</span></div>
+      <div class="nav-links">
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#demo">Demo</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contacto" class="nav-cta">Contactar</a>
+      </div>
+    </div>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-badge">Automatización IA para negocios locales</div>
-    <h1>Tu negocio responde solo,<br><span>incluso cuando no estás</span></h1>
-    <p>Instalamos un asistente con IA en tu web y WhatsApp que atiende clientes, responde preguntas y capta leads — las 24 horas, sin cuotas mensuales.</p>
-    <a href="#contacto" class="hero-cta">Quiero uno para mi negocio →</a>
-  </section>
-
-  <!-- DEMO -->
-  <section class="demo-section">
-    <div class="section-label">Demo en vivo</div>
-    <h2>Pruébalo ahora mismo</h2>
-    <p>Así verán tus clientes el asistente. Haz clic en el botón verde de la esquina inferior derecha.</p>
-
-    <div class="demo-cards">
-      <div class="demo-card">
-        <div class="icon">🦷</div>
-        <h3>Clínica Dental</h3>
-        <p>Responde consultas sobre precios, seguros y horarios. Capta pacientes nuevos automáticamente, incluso en fin de semana.</p>
+    <div class="hero-bg-grid"></div>
+    <div class="hero-content">
+      <div class="hero-badge" data-animate="fade-up">
+        <span class="badge-dot"></span>
+        Automatización IA · A Coruña
       </div>
-      <div class="demo-card">
-        <div class="icon">🍽️</div>
-        <h3>Restaurante</h3>
-        <p>Gestiona reservas y preguntas frecuentes sin atender el móvil. Ningún cliente se va sin respuesta.</p>
+      <h1 data-animate="fade-up" data-delay="100">
+        Tu negocio atiende clientes<br>
+        <span class="gradient-text">mientras tú descansas</span>
+      </h1>
+      <p data-animate="fade-up" data-delay="200">
+        Cada cliente que te escribe y no recibe respuesta es una venta perdida. 
+        Instalamos un asistente con IA en tu web y WhatsApp que responde, 
+        capta y cualifica — las 24 horas. Sin cuotas mensuales.
+      </p>
+      <div class="hero-actions" data-animate="fade-up" data-delay="300">
+        <a href="#contacto" class="btn-primary">Quiero mi asistente →</a>
+        <a href="#demo" class="btn-ghost">Ver demo en vivo</a>
+      </div>
+      <div class="hero-stats" data-animate="fade-up" data-delay="400">
+        <div class="stat">
+          <strong>24/7</strong>
+          <span>Disponible siempre</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <strong>+80%</strong>
+          <span>Leads que antes se perdían</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <strong>0€</strong>
+          <span>Cuota mensual</span>
+        </div>
       </div>
     </div>
+    <div class="hero-visual" data-animate="fade-left" data-delay="200">
+      <div class="chat-mockup">
+        <div class="chat-header">
+          <div class="chat-avatar">Z</div>
+          <div>
+            <p class="chat-name">Asistente Zenvio</p>
+            <p class="chat-status"><span class="status-dot"></span>En línea ahora</p>
+          </div>
+        </div>
+        <div class="chat-messages" id="mockup-messages"></div>
+        <div class="chat-input-mock">
+          <span>Escribe un mensaje...</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <div class="demo-hint">
-      💬 El asistente está activo — escríbele en la esquina inferior derecha
+  <!-- PAIN SECTION -->
+  <section class="pain-section">
+    <div class="container">
+      <div class="pain-label" data-animate="fade-up">El problema</div>
+      <h2 data-animate="fade-up" data-delay="100">¿Cuántos clientes pierdes cada semana?</h2>
+      <div class="pain-grid">
+        <div class="pain-card" data-animate="fade-up" data-delay="100">
+          <div class="pain-icon">🌙</div>
+          <h3>Fuera de horario</h3>
+          <p>Un cliente te escribe a las 10 de la noche preguntando por una cita. Nadie responde. Al día siguiente ya ha ido a la competencia.</p>
+        </div>
+        <div class="pain-card" data-animate="fade-up" data-delay="200">
+          <div class="pain-icon">🔁</div>
+          <h3>Preguntas repetitivas</h3>
+          <p>Tu equipo responde 20 veces al día lo mismo: horarios, precios, seguros. Tiempo que podría dedicarse a lo que realmente importa.</p>
+        </div>
+        <div class="pain-card" data-animate="fade-up" data-delay="300">
+          <div class="pain-icon">📉</div>
+          <h3>Leads sin captar</h3>
+          <p>Alguien visita tu web, tiene dudas, no encuentra respuesta y se va. Sin dejar ningún dato de contacto. Oportunidad perdida.</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- HOW IT WORKS -->
-  <section class="how-section">
-    <div class="section-label">Cómo funciona</div>
-    <h2>Lo instalamos, tú te despreocupas</h2>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <h4>Nos cuentas tu negocio</h4>
-        <p>Rellenas un formulario con tu información. Sin reuniones largas.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <h4>Lo configuramos todo</h4>
-        <p>Entrenamos el asistente con tus datos y lo conectamos a tu web y WhatsApp.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <h4>Empieza a funcionar</h4>
-        <p>Tu negocio atiende clientes solo. Tú recibes los leads directamente.</p>
+  <section class="how-section" id="como-funciona">
+    <div class="container">
+      <div class="section-label" data-animate="fade-up">Cómo funciona</div>
+      <h2 data-animate="fade-up" data-delay="100">De cero a funcionando<br>en menos de una semana</h2>
+      <div class="steps-grid">
+        <div class="step-card" data-animate="fade-up" data-delay="100">
+          <div class="step-num">01</div>
+          <h3>Nos cuentas tu negocio</h3>
+          <p>Rellenas un formulario con tu información: horarios, servicios, precios, preguntas frecuentes. Sin reuniones largas.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step-card" data-animate="fade-up" data-delay="200">
+          <div class="step-num">02</div>
+          <h3>Configuramos el asistente</h3>
+          <p>Entrenamos la IA con los datos de tu negocio y lo conectamos a tu web y WhatsApp. Tú no tocas nada técnico.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step-card" data-animate="fade-up" data-delay="300">
+          <div class="step-num">03</div>
+          <h3>Empieza a trabajar solo</h3>
+          <p>Tu asistente atiende, responde y capta leads automáticamente. Tú recibes los contactos directamente en tu móvil.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- DEMO -->
+  <section class="demo-section" id="demo">
+    <div class="container">
+      <div class="section-label light" data-animate="fade-up">Demo en vivo</div>
+      <h2 class="light" data-animate="fade-up" data-delay="100">Pruébalo ahora mismo</h2>
+      <p class="demo-sub" data-animate="fade-up" data-delay="200">
+        Así verán tus clientes el asistente. Haz clic en el botón verde de la esquina inferior derecha y escríbele como lo haría un cliente real.
+      </p>
+      <div class="demo-cards" data-animate="fade-up" data-delay="300">
+        <div class="demo-card">
+          <div class="demo-card-icon">🦷</div>
+          <h3>Clínica Dental</h3>
+          <p>Responde sobre precios, seguros y horarios. Capta pacientes nuevos automáticamente, incluso en fin de semana.</p>
+          <ul class="demo-list">
+            <li>✓ Informa sobre servicios y precios</li>
+            <li>✓ Verifica seguros aceptados</li>
+            <li>✓ Capta datos del paciente nuevo</li>
+          </ul>
+        </div>
+        <div class="demo-card">
+          <div class="demo-card-icon">🍽️</div>
+          <h3>Restaurante</h3>
+          <p>Gestiona reservas y preguntas frecuentes sin atender el móvil. Ningún cliente se va sin respuesta.</p>
+          <ul class="demo-list">
+            <li>✓ Gestiona reservas automáticamente</li>
+            <li>✓ Informa sobre carta y horarios</li>
+            <li>✓ Atiende fuera de horario</li>
+          </ul>
+        </div>
+      </div>
+      <div class="demo-hint" data-animate="fade-up" data-delay="400">
+        <span class="pulse-dot"></span>
+        El asistente está activo — escríbele en la esquina inferior derecha
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="section-label" data-animate="fade-up">Preguntas frecuentes</div>
+      <h2 data-animate="fade-up" data-delay="100">Todo lo que necesitas saber</h2>
+      <div class="faq-list" data-animate="fade-up" data-delay="200">
+
+        <div class="faq-item">
+          <button class="faq-question">
+            ¿Necesito conocimientos técnicos para usarlo?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>No. Nosotros nos encargamos de todo. Tú solo rellenas un formulario con la información de tu negocio y nosotros configuramos, probamos y entregamos el asistente listo para funcionar.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            ¿Cuánto cuesta y hay cuota mensual?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>El servicio tiene un coste único de instalación desde 500€. No hay cuotas mensuales ni contratos de permanencia. Pagas una vez y el asistente es tuyo.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            ¿Funciona con cualquier tipo de web?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Sí. Funciona con WordPress, Wix, Squarespace, y cualquier web con acceso al código. Si no tienes web, también podemos ayudarte.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            ¿Qué pasa si el asistente no sabe responder algo?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>El asistente está entrenado para reconocer cuando no tiene información suficiente y redirige al cliente a contactar directamente contigo. Nunca inventa información.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            ¿Cómo recibo los leads que capta el asistente?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Cada vez que el asistente capta un contacto nuevo, recibes una notificación directamente en tu email o WhatsApp con el nombre y teléfono del cliente interesado.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            ¿Cuánto tiempo tarda la instalación?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Menos de una semana desde que nos envías la información de tu negocio. Incluye configuración, pruebas, y una sesión de validación contigo antes de publicarlo.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
   <section class="cta-section" id="contacto">
-    <h2>¿Quieres uno para tu negocio?</h2>
-    <p>Instalación única. Sin cuotas mensuales. Listo en menos de una semana.</p>
-    <a href="https://wa.me/34600000000?text=Hola%2C%20me%20interesa%20el%20asistente%20para%20mi%20negocio" class="cta-btn">
-      Contáctanos por WhatsApp →
-    </a>
-    <p class="no-fee">Sin compromiso. Te explicamos cómo funciona en 10 minutos.</p>
+    <div class="container">
+      <div class="cta-inner" data-animate="fade-up">
+        <h2>¿Listo para no perder más clientes?</h2>
+        <p>Cuéntanos en qué tipo de negocio tienes y te explicamos cómo funcionaría en tu caso. Sin compromiso.</p>
+        <a href="https://wa.me/34623027369?text=Hola%2C%20me%20interesa%20el%20asistente%20para%20mi%20negocio" class="btn-primary large">
+          Contáctanos por WhatsApp →
+        </a>
+        <p class="cta-sub">Respondemos en menos de 24 horas · Sin compromiso</p>
+      </div>
+    </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <p>© 2026 <span>Zenvio</span> — Automatización IA para negocios locales · A Coruña</p>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="logo">Zen<span>vio</span></div>
+        <p>Automatización IA para negocios locales · A Coruña</p>
+        <p class="footer-copy">© 2026 Zenvio. Todos los derechos reservados.</p>
+      </div>
+    </div>
   </footer>
 
-  <!-- BOTPRESS WIDGET -->
+  <!-- BOTPRESS -->
   <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
   <script src="https://files.bpcontent.cloud/2026/05/04/17/20260504173255-35QALUUP.js" defer></script>
+  <script src="main.js"></script>
 
 </body>
 </html>
