@@ -28,6 +28,7 @@
   if (canvas) {
     const ctx = canvas.getContext('2d');
     let pts = [];
+    let animationId = null;
 
     const resize = () => {
       canvas.width = canvas.parentElement.offsetWidth;
@@ -86,10 +87,15 @@
         }
       }
 
-      requestAnimationFrame(tick);
+      animationId = requestAnimationFrame(tick);
     };
 
     tick();
+
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', () => {
+      if (animationId) cancelAnimationFrame(animationId);
+    });
   }
 
   /* ─── TYPEWRITER ─── */
@@ -99,6 +105,7 @@
     const line2 = 'mientras tú descansas';
     let i = 0;
     let phase = 0;
+    let writeTimeout = null;
 
     const cursor = document.createElement('span');
     cursor.className = 'tw-cursor';
@@ -110,20 +117,38 @@
       if (phase === 0) {
         h1.textContent = line1.slice(0, i);
         h1.appendChild(cursor);
-        if (i < line1.length) { i++; setTimeout(write, 55); }
-        else { phase = 1; i = 0; setTimeout(write, 400); }
+        if (i < line1.length) { 
+          i++; 
+          writeTimeout = setTimeout(write, 55); 
+        }
+        else { 
+          phase = 1; 
+          i = 0; 
+          writeTimeout = setTimeout(write, 400); 
+        }
       } else if (phase === 1) {
         h1.textContent = line1 + '\n';
         h1.style.whiteSpace = 'pre-line';
         gradSpan.textContent = line2.slice(0, i);
         h1.appendChild(gradSpan);
         h1.appendChild(cursor);
-        if (i < line2.length) { i++; setTimeout(write, 55); }
-        else { cursor.style.animation = 'none'; cursor.style.opacity = '0'; }
+        if (i < line2.length) { 
+          i++; 
+          writeTimeout = setTimeout(write, 55); 
+        }
+        else { 
+          cursor.style.animation = 'none'; 
+          cursor.style.opacity = '0'; 
+        }
       }
     };
 
-    setTimeout(write, 900);
+    writeTimeout = setTimeout(write, 900);
+
+    // Cleanup
+    window.addEventListener('beforeunload', () => {
+      if (writeTimeout) clearTimeout(writeTimeout);
+    });
   }
 
   /* ─── CHAT MOCKUP ─── */
@@ -138,6 +163,7 @@
     ];
 
     let ci = 0;
+    let timeouts = [];
 
     const typing = (cb) => {
       const el = document.createElement('div');
@@ -149,12 +175,22 @@
       });
       msgBox.appendChild(el);
       msgBox.scrollTop = msgBox.scrollHeight;
-      setTimeout(() => { el.remove(); cb(); }, 950);
+      const timeout = setTimeout(() => { 
+        if (el.parentNode) el.remove(); 
+        cb(); 
+      }, 950);
+      timeouts.push(timeout);
     };
 
     const next = () => {
       if (ci >= convos.length) {
-        setTimeout(() => { msgBox.innerHTML = ''; ci = 0; setTimeout(next, 600); }, 3000);
+        const timeout = setTimeout(() => { 
+          msgBox.innerHTML = ''; 
+          ci = 0; 
+          const resetTimeout = setTimeout(next, 600);
+          timeouts.push(resetTimeout);
+        }, 3000);
+        timeouts.push(timeout);
         return;
       }
       const m = convos[ci];
@@ -165,7 +201,8 @@
         msgBox.appendChild(b);
         msgBox.scrollTop = msgBox.scrollHeight;
         ci++;
-        setTimeout(next, m.type === 'bot' ? 1700 : 1100);
+        const timeout = setTimeout(next, m.type === 'bot' ? 1700 : 1100);
+        timeouts.push(timeout);
       };
       m.type === 'bot' ? typing(go) : go();
     };
@@ -174,9 +211,19 @@
     if (visual) {
       let started = false;
       const vo = new IntersectionObserver(([e]) => {
-        if (e.isIntersecting && !started) { started = true; setTimeout(next, 1200); }
+        if (e.isIntersecting && !started) { 
+          started = true; 
+          const timeout = setTimeout(next, 1200);
+          timeouts.push(timeout);
+        }
       }, { threshold: 0.3 });
       vo.observe(visual);
+
+      // Cleanup
+      window.addEventListener('beforeunload', () => {
+        vo.disconnect();
+        timeouts.forEach(t => clearTimeout(t));
+      });
     }
   }
 
@@ -242,6 +289,11 @@
       }
     }, { threshold: 0.5 });
     so.observe(statsEl);
+
+    // Cleanup
+    window.addEventListener('beforeunload', () => {
+      so.disconnect();
+    });
   }
 
 })();
