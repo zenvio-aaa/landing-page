@@ -98,57 +98,24 @@
     });
   }
 
-  /* ─── TYPEWRITER ─── */
+  /* ─── TYPEWRITER MEJORADO - Todo visible sin escritura ─── */
   const h1 = document.querySelector('.hero h1');
   if (h1) {
-    const line1 = 'Tu negocio atiende clientes';
+    // Mostrar todo el contenido inmediatamente con animación fade-in
+    h1.style.animation = 'none';
+    h1.style.opacity = '1';
+    h1.style.transform = 'none';
+    
+    // Crear el segundo párrafo visible
     const line2 = 'mientras tú descansas';
-    let i = 0;
-    let phase = 0;
-    let writeTimeout = null;
-
-    const cursor = document.createElement('span');
-    cursor.className = 'tw-cursor';
-
-    const gradSpan = document.createElement('span');
-    gradSpan.className = 'gradient-text';
-
-    const write = () => {
-      if (phase === 0) {
-        h1.textContent = line1.slice(0, i);
-        h1.appendChild(cursor);
-        if (i < line1.length) { 
-          i++; 
-          writeTimeout = setTimeout(write, 55); 
-        }
-        else { 
-          phase = 1; 
-          i = 0; 
-          writeTimeout = setTimeout(write, 400); 
-        }
-      } else if (phase === 1) {
-        h1.textContent = line1 + '\n';
-        h1.style.whiteSpace = 'pre-line';
-        gradSpan.textContent = line2.slice(0, i);
-        h1.appendChild(gradSpan);
-        h1.appendChild(cursor);
-        if (i < line2.length) { 
-          i++; 
-          writeTimeout = setTimeout(write, 55); 
-        }
-        else { 
-          cursor.style.animation = 'none'; 
-          cursor.style.opacity = '0'; 
-        }
-      }
-    };
-
-    writeTimeout = setTimeout(write, 900);
-
-    // Cleanup
-    window.addEventListener('beforeunload', () => {
-      if (writeTimeout) clearTimeout(writeTimeout);
-    });
+    if (!h1.querySelector('.gradient-text')) {
+      const gradSpan = document.createElement('span');
+      gradSpan.className = 'gradient-text';
+      gradSpan.textContent = line2;
+      h1.style.whiteSpace = 'pre-line';
+      h1.innerHTML = 'Tu negocio atiende clientes<br>';
+      h1.appendChild(gradSpan);
+    }
   }
 
   /* ─── CHAT MOCKUP ─── */
@@ -187,7 +154,7 @@
         const timeout = setTimeout(() => { 
           msgBox.innerHTML = ''; 
           ci = 0; 
-          const resetTimeout = setTimeout(next, 600);
+          const resetTimeout = setTimeout(next, 3000);
           timeouts.push(resetTimeout);
         }, 3000);
         timeouts.push(timeout);
@@ -213,7 +180,7 @@
       const vo = new IntersectionObserver(([e]) => {
         if (e.isIntersecting && !started) { 
           started = true; 
-          const timeout = setTimeout(next, 1200);
+          const timeout = setTimeout(next, 800);
           timeouts.push(timeout);
         }
       }, { threshold: 0.3 });
