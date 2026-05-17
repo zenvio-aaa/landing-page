@@ -738,21 +738,44 @@ body {
 
 .faq-item.open .faq-question { color: var(--g-dark); }
 
+/* ─── ICON MEJORADO ─── */
 .faq-icon {
-  width: 26px; height: 26px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: var(--g-light);
   color: var(--g-dark);
   font-size: 18px;
+  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  transition: transform 0.35s var(--ease), background 0.25s, color 0.25s;
+  transition: all 0.45s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   line-height: 1;
+  position: relative;
 }
 
-.faq-item.open .faq-icon { transform: rotate(45deg); background: var(--g-mid); color: #fff; }
+/* Animación suave del ícono */
+@keyframes icon-spin {
+  0% {
+    transform: scale(1) rotateZ(0deg);
+  }
+  50% {
+    transform: scale(1.1) rotateZ(90deg);
+  }
+  100% {
+    transform: scale(1.15) rotateZ(180deg);
+  }
+}
+
+.faq-item.open .faq-icon {
+  animation: icon-spin 0.45s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  background: var(--g-mid);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(76, 175, 130, 0.4), 
+              0 0 40px rgba(76, 175, 130, 0.2);
+}
 
 .faq-answer {
   max-height: 0;
