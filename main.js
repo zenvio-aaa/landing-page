@@ -227,14 +227,23 @@
     }
   }
 
-  /* ─── FAQ ─── */
+  /* ─── FAQ - MEJORADO ─── */
   document.querySelectorAll('.faq-item').forEach(item => {
     const btn = item.querySelector('.faq-question');
     if (!btn) return;
+    
     btn.addEventListener('click', () => {
       const open = item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-      if (!open) item.classList.add('open');
+      
+      // Cerrar otros items
+      document.querySelectorAll('.faq-item.open').forEach(i => {
+        i.classList.remove('open');
+      });
+      
+      // Abrir el actual si no estaba abierto
+      if (!open) {
+        item.classList.add('open');
+      }
     });
   });
 
